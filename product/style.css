@@ -12,7 +12,7 @@
 }
 .item img{
     height: auto;
-    max-width: 50% ;
+    max-width: 60% ;
     border-right:1px solid black;
 
 
@@ -27,7 +27,7 @@
 .text .btn.btn-success{
     width: 150px;
     
-    position: absolute;
-    right: 200px;
-    bottom: 20px;
+    float: right;
+    margin-right: 50px;
+    margin-top: 50px;
 }

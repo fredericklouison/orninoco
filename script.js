@@ -30,7 +30,7 @@ const url= 'http://localhost:3000/api/teddies/';
                         location.href='http://127.0.0.1:5500/product/';
                     })
                     namediv.textContent='Nom : '+name;
-                    pricediv.textContent='Prix : '+price/100+'$';
+                    pricediv.textContent='Prix : '+price/100+'EUR';
                     imgdiv.setAttribute('src',img);
                     main.append(item);
                     item.append(imgdiv);
@@ -41,7 +41,7 @@ const url= 'http://localhost:3000/api/teddies/';
                 
             }
             else{
-                console.log('error');
+                alert('Erreur de connexion au serveur, veuillez réessayer ultérieurement.');
             }
         }
     }
