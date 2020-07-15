@@ -1,0 +1,33 @@
+.navbar{
+    background-color: #f3e9f1;
+}
+.item{
+    border: 1px solid black;
+    width: 80%;
+    height: 550px;
+    border-radius: 20px;
+    margin: 100px auto;
+    overflow: hidden;
+    display: flex;
+}
+.item img{
+    height: auto;
+    max-width: 50% ;
+    border-right:1px solid black;
+
+
+}
+.text p{
+    font-size: 20px;
+    margin-left: 40px;
+}
+.text p:first-child{
+    margin-top: 100px;
+}
+.text .btn.btn-success{
+    width: 150px;
+    
+    position: absolute;
+    right: 200px;
+    bottom: 20px;
+}
