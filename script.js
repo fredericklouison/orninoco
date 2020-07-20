@@ -1,4 +1,16 @@
-"use strict"
+
+if( localStorage.getItem('basket')){
+    let mica =localStorage.getItem('basket');
+    echo=JSON.parse(mica);
+    console.log(echo);
+    let basketnumber=document.getElementById('basket');
+    basketnumber.textContent= echo.length+' panier';
+}else{
+    let mica =localStorage.getItem('basket');
+    let basketLength=0;
+    let basketnumber=document.getElementById('basket');
+    basketnumber.textContent= basketLength+' panier';
+}
 const url= 'http://localhost:3000/api/teddies/';
     let requete= new XMLHttpRequest();
     requete.open('GET',url);
@@ -38,7 +50,6 @@ const url= 'http://localhost:3000/api/teddies/';
                     item.append(pricediv);
                     item.append(btn);
                 }
-                
             }
             else{
                 alert('Erreur de connexion au serveur, veuillez réessayer ultérieurement.');

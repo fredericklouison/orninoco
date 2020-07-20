@@ -11,8 +11,9 @@
     display: flex;
 }
 .item img{
+    
+    max-width: 65%;
     height: auto;
-    max-width: 60% ;
     border-right:1px solid black;
 
 

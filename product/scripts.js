@@ -1,5 +1,14 @@
 let id=localStorage.getItem('id');
-
+if( localStorage.getItem('basket')){
+    let mica =localStorage.getItem('basket');
+    let echo=JSON.parse(mica);
+    let basketnumber=document.getElementById('basket');
+    basketnumber.textContent= echo.length+' panier';
+}else{
+    let basketLength=0;
+    let basketnumber=document.getElementById('basket');
+    basketnumber.textContent= basketLength+' panier';
+}
 const url= 'http://localhost:3000/api/teddies/'+id;
     let requete= new XMLHttpRequest();
     requete.open('GET',url);
@@ -8,6 +17,7 @@ const url= 'http://localhost:3000/api/teddies/'+id;
     requete.onload=function(){
         if(requete.readyState===XMLHttpRequest.DONE){
             if(requete.status===200){
+               
                 let reponse=requete.response;
                 let img=reponse.imageUrl;
                 let name=reponse.name;
@@ -33,7 +43,27 @@ const url= 'http://localhost:3000/api/teddies/'+id;
                 btn.addEventListener('click',function change_valeur() {
                     let choice = select.selectedIndex  // Récupération de l'index du <option> choisi
                     let valeur_cherchee = select.options[choice].value; // Récupération du texte du <option> d'index "choice"
-                    localStorage.setItem('itemNumber','0');
+                    let itemBasket={"name":name,"img":img,"price":price,"color":valeur_cherchee};
+                    function basket(){
+                        let basketnumber=document.getElementById('basket');
+                        basketLength=echo.length;
+                        basketnumber.textContent=basketLength+' panier';
+                    }
+                    if(localStorage.getItem('basket')){
+                        let mica =localStorage.getItem('basket');
+                        echo=JSON.parse(mica);
+                        echo.push(itemBasket);
+                        sellItem=JSON.stringify(echo)
+                        localStorage.setItem('basket',sellItem);
+                        basket();  
+                        console.log(echo);
+                    }else{
+                        localStorage.setItem("basket",JSON.stringify([itemBasket]));
+                        let mica=localStorage.getItem('basket');
+                        console.log(JSON.parse(mica));
+                        basket();
+                    }
+                    
                 })
                 for (let i = 0; i < colors.length; i++) {
                     let option=document.createElement('option');
