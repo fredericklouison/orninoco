@@ -1,12 +1,10 @@
 
 if( localStorage.getItem('basket')){
     let mica =localStorage.getItem('basket');
-    echo=JSON.parse(mica);
-    console.log(echo);
+    let echo=JSON.parse(mica);
     let basketnumber=document.getElementById('basket');
     basketnumber.textContent= echo.length+' panier';
 }else{
-    let mica =localStorage.getItem('basket');
     let basketLength=0;
     let basketnumber=document.getElementById('basket');
     basketnumber.textContent= basketLength+' panier';

@@ -1,3 +1,31 @@
 .navbar{
     background-color: #f3e9f1;
 }
+.item{
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 200px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+.item img{
+    height: 150px;
+    width: auto;
+    margin:auto 150px ;
+}
+.item p{
+    margin-top: 100px;
+    margin-left: 70px;
+}
+.total p {
+    font-size: 30px;
+}
+form {
+    border: 1px solid black;
+    border-radius: 10px;
+    
+    width: fit-content;
+    padding: 20px;
+    margin: 50px auto ;
+}

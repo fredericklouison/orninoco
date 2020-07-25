@@ -19,6 +19,7 @@ const url= 'http://localhost:3000/api/teddies/'+id;
             if(requete.status===200){
                
                 let reponse=requete.response;
+                let id =reponse._id
                 let img=reponse.imageUrl;
                 let name=reponse.name;
                 let price=reponse.price;
@@ -43,7 +44,7 @@ const url= 'http://localhost:3000/api/teddies/'+id;
                 btn.addEventListener('click',function change_valeur() {
                     let choice = select.selectedIndex  // Récupération de l'index du <option> choisi
                     let valeur_cherchee = select.options[choice].value; // Récupération du texte du <option> d'index "choice"
-                    let itemBasket={"name":name,"img":img,"price":price,"color":valeur_cherchee};
+                    let itemBasket={"name":name,"img":img,"price":price,"color":valeur_cherchee,"id":id};
                     function basket(){
                         let basketnumber=document.getElementById('basket');
                         basketLength=echo.length;
