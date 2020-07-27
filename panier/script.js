@@ -66,8 +66,11 @@ btn.addEventListener('click',function validation(){
         if(requete.readyState===XMLHttpRequest.DONE){
             if(requete.status===201){
                 let reponse=requete.response;
-                console.log(reponse);
-                
+                localStorage.setItem('total',totalPrice);
+                localStorage.setItem('order',JSON.stringify(reponse));
+                console.log(localStorage)
+                localStorage.removeItem('basket');
+                location.href='http://127.0.0.1:5500/confirm/';
             }
             else{
                 console.log('error');

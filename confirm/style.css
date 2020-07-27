@@ -1,0 +1,17 @@
+.navbar{
+    background-color: #f3e9f1;
+}
+body .container-fluid{
+    background-color: #f3c9f1;
+}
+.item{
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 200px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+.total p {
+    font-size: 25px;
+}
