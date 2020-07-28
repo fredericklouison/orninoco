@@ -1,17 +1,12 @@
-if( localStorage.getItem('basket')){
-    let mica =localStorage.getItem('basket');
-    let echo=JSON.parse(mica);
-    let basketnumber=document.getElementById('basket');
-    basketnumber.textContent= echo.length+' panier';
-}else{
-    let basketLength=0;
-    let basketnumber=document.getElementById('basket');
-    basketnumber.textContent= basketLength+' panier';
-}
+
+
+import {basketNumber} from "../module/numberBasket.js"; 
+basketNumber()
 let main=document.querySelector('main');
 let  basket=JSON.parse(localStorage.getItem('basket'));
 let totalPrice=0;
-for (i=0;i<basket.length;i++){
+
+for (let i=0;i<basket.length;i++){
     let item=document.createElement('div');
     item.className='item';
     let name=basket[i]['name'];
@@ -47,34 +42,34 @@ btn.addEventListener('click',function validation(){
     let inputEmail=document.querySelector('#inputEmail4').value;
     let contact={"firstName":inputName,"lastName":inputLastName,"address":inputAddress,"city":inputCity,"email":inputEmail};
     let command=[];
-    for(i=0;i<basket.length;i++){
+    for(let i=0;i<basket.length;i++){
         let ids=basket[i]['id'];
         command.push(ids)
     }
-    let order={
+    let order=JSON.stringify({
         "contact":contact,
         "products":command
-    }
+    })
     console.log(order);
-    const url= 'http://localhost:3000/api/teddies/order';
-    let requete= new XMLHttpRequest();
-    requete.open('POST',url);
-    requete.setRequestHeader('Content-type','application/json');
-    requete.responseType='json';
-    requete.send(JSON.stringify(order));
-    requete.onload=function(){
-        if(requete.readyState===XMLHttpRequest.DONE){
-            if(requete.status===201){
-                let reponse=requete.response;
-                localStorage.setItem('total',totalPrice);
-                localStorage.setItem('order',JSON.stringify(reponse));
-                console.log(localStorage)
-                localStorage.removeItem('basket');
-                location.href='http://127.0.0.1:5500/confirm/';
-            }
-            else{
-                console.log('error');
-            }
+    async function helloapi(){
+        const response= await fetch('http://localhost:3000/api/teddies/order',{
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body:order    
+        });
+        const teddies= await response.json();
+        let error;
+        if(response.ok){
+            localStorage.setItem('total',totalPrice);
+            console.log(teddies); 
+            localStorage.setItem('order',JSON.stringify(teddies));
+            localStorage.removeItem('basket');
+            location.href='http://127.0.0.1:5500/confirm/';
+        }else{
+            
+             throw error = new Error('erreur de connexion au serveur');
         }
     }
-})
+    helloapi().catch(error=>console.error(error))
+}) 
+
