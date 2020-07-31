@@ -35,3 +35,10 @@
     
     
 }
+@media (max-width: 768px) { 
+
+    .item{
+        margin: auto;
+        width: 80%;
+    }
+}

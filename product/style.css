@@ -4,7 +4,7 @@
 .item{
     border: 1px solid black;
     width: 80%;
-    height: 550px;
+    height: auto;
     border-radius: 20px;
     margin: 100px auto;
     overflow: hidden;
@@ -31,4 +31,17 @@
     float: right;
     margin-right: 50px;
     margin-top: 50px;
+}
+p.message{
+    font-size: 13px;
+    color: red;
+}
+@media (max-width: 992px) { 
+    .item{   
+        display: block;
+     } 
+     .item img{
+        max-width:  100%;
+        border: none;
+     }
 }

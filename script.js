@@ -1,14 +1,13 @@
 
 import {basketNumber} from "./module/numberBasket.js"; 
-basketNumber()
+basketNumber();
 async function helloapi(){
     const response= await fetch('http://localhost:3000/api/teddies/');
     const teddies= await response.json();
     let error;
     console.log(teddies);
     if (response.ok){
-        for(let i=0;i<=4;i++){
-                    
+        for(let i=0;i<=teddies.length;i++){
             let img=teddies[i].imageUrl;
             let id=teddies[i]._id;
             let price=teddies[i].price;
@@ -23,11 +22,10 @@ async function helloapi(){
             btn.textContent='Plus d\'info';
             btn.className='btn btn-success';
             btn.setAttribute('type','button');
-            
             btn.addEventListener('click',function(){
                 localStorage.setItem('id',id);
                 location.href='http://127.0.0.1:5500/product/';
-            })
+            });
             namediv.textContent='Nom : '+name;
             pricediv.textContent='Prix : '+price/100+'EUR';
             imgdiv.setAttribute('src',img);
@@ -45,4 +43,4 @@ async function helloapi(){
     }
     
 }
-helloapi().catch(error=>console.error(error))
+helloapi().catch(error=>console.error(error));

@@ -5,7 +5,7 @@ async function helloapi(){
     const response= await fetch('http://localhost:3000/api/teddies/'+id);
     const teddies= await response.json();
     if(response.ok){
-        let id =teddies._id
+        let id =teddies._id;
         let img=teddies.imageUrl;
         let name=teddies.name;
         let price=teddies.price;
@@ -20,6 +20,7 @@ async function helloapi(){
         let priceDiv=document.createElement('p');
         let descDiv=document.createElement('p');
         let btn=document.getElementById('submit');
+        let message=document.querySelector('.message');
         nameDiv.textContent='Nom : '+name;
         priceDiv.textContent='Prix : '+price/100+'EUR';
         descDiv.textContent='description :   '+description;
@@ -28,30 +29,33 @@ async function helloapi(){
         item.prepend(imgdiv);
         
         btn.addEventListener('click',function change_valeur() {
-            let choice = select.selectedIndex  // Récupération de l'index du <option> choisi
-            let valeur_cherchee = select.options[choice].value; // Récupération du texte du <option> d'index "choice"
-            let itemBasket={"name":name,"img":img,"price":price,"color":valeur_cherchee,"id":id};
-            function basket(){
+            let choice = select.selectedIndex;// Récupération de l'index du <option> choisi
+            let valeur_cherchee;
+            if(choice==0){
+                message.textContent='Choississez une couleur '; 
+            }else{
+                message.textContent='';
+                valeur_cherchee = select.options[choice].value; // Récupération du texte du <option> d'index "choice"
+                let itemBasket={"name":name,"img":img,"price":price,"color":valeur_cherchee,"id":id};
+                function basket(){
                 let basketnumber=document.getElementById('basket');
                 let mica=localStorage.getItem('basket');
                 let echo=JSON.parse(mica);
                 let basketLength=echo.length;
                 basketnumber.textContent=basketLength+' panier';
-            }
-            if(localStorage.getItem('basket')){
-                let mica =localStorage.getItem('basket');
-                let echo=JSON.parse(mica);
-                echo.push(itemBasket);
-                let sellItem=JSON.stringify(echo)
-                localStorage.setItem('basket',sellItem);
-                basket();  
-                console.log(echo);
-            }else{
-                localStorage.setItem("basket",JSON.stringify([itemBasket]));
-                let mica=localStorage.getItem('basket');
-                let echo=JSON.parse(mica);
-                console.log(JSON.parse(mica));
-                basket();
+                }
+                if(localStorage.getItem('basket')){
+                    let mica =localStorage.getItem('basket');
+                    let echo=JSON.parse(mica);
+                    echo.push(itemBasket);
+                    let sellItem=JSON.stringify(echo);
+                    localStorage.setItem('basket',sellItem);
+                    basket();  
+                }else{
+                    localStorage.setItem("basket",JSON.stringify([itemBasket]));
+                    basket();
+                }
+            
             }
             
         })
@@ -69,4 +73,4 @@ async function helloapi(){
         throw error=new Error('erreur de connexion au serveur');
     }
 }
-helloapi().catch(error=>console.error(error))
+helloapi().catch(error=>console.error(error));

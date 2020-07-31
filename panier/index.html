@@ -16,14 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link " href="../index.html">Acceuil <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " href="../index.html">Accueil <span class="sr-only">(current)</span></a>
             <a  id='basket' class="nav-item nav-link active" href="../panier/index.html">panier</a>
           </div>
         </div>
     </nav>
     <main class="row">
         <div class="item total">
-                   
+                  <h6>Votre panier est vide</h6> 
         </div>
         
     </main>
@@ -31,19 +31,23 @@
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="First name"id='inputName'>
+          <span class='error'id=firstnameError>Entrez un prénom correct</span>
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Last name"id='inputLastName'>
+          <span class='error' id=lastnameError>Entrez un nom  correct</span>
         </div>
       </div>
       <div class="form-group">
         <label for="inputAddress">Adresse</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <span  class='error'id=adressError>adresse incorrect</span>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Ville</label>
           <input type="text" class="form-control" id="inputCity">
+          <span class='error'id=CityError>Entrez une ville correct</span>
         </div>
         
         
@@ -51,6 +55,7 @@
       <div class="form-group col-md-12">
         <label for="inputEmail4">Email</label>
         <input type="email" class="form-control" id="inputEmail4">
+        <span class='error'id=emailError>Entrez une adresse email correct</span>
       </div>
       <button type="submit" class=" commande btn btn-success">Commander</button>
 
